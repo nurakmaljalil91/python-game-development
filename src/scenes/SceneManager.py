@@ -32,8 +32,8 @@ class SceneManager:
     def start(self):
         self.scenes[len(self.scenes) - 1].start()
 
-    def handle_events(self, event):
-        self.scenes[len(self.scenes) - 1].handle_events(event)
+    def handle_events(self, event, delta_time):
+        self.scenes[len(self.scenes) - 1].handle_events(event, delta_time)
 
     def update(self, delta_time):
         self.scenes[len(self.scenes) - 1].update(delta_time)

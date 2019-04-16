@@ -31,6 +31,8 @@ class GameObject(object):
         self.position = [self.x, self.y]
         self.size = [self.width, self.height]
         self.id = generate_id()
+        self.position = vector2(self.x, self.y)
+        self.size = vector2(self.width, self.height)
 
     def start(self):
         pass

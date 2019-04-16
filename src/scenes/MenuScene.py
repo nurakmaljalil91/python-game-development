@@ -10,7 +10,7 @@ class MenuScene(Scene):
     def start(self):
         pass
 
-    def handle_events(self, event):
+    def handle_events(self, event, delta_time):
         self.event = event
         if self.event.type == pygame.KEYDOWN:
             if self.event.key == pygame.K_a:

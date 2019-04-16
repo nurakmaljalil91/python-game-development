@@ -15,7 +15,11 @@ class Game(object):
         # Initialize the pygame
         pygame.init()
         # setting the game window
-        self.window = pygame.display.set_mode((self.width, self.height))
+        if fullscreen is True:
+            self.window = pygame.display.set_mode((self.width, self.height), pygame.FULLSCREEN)
+
+        else:
+            self.window = pygame.display.set_mode((self.width, self.height), pygame.RESIZABLE)
         pygame.display.set_caption(self.title)
         print('Game is created')
 
@@ -43,7 +47,7 @@ class Game(object):
     # function to handle all the events
     def handle_events(self):
         # set the fps for the game
-        self.delta_time = self.clock.tick(FPS) / 1000  # delta time in miliseconds
+        self.delta_time = self.clock.tick(FPS) / 1000 # delta time in seconds
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.is_running = False
@@ -52,7 +56,7 @@ class Game(object):
                 if event.key == pygame.K_ESCAPE:
                     self.is_running = False
                 if self.scene_manager.is_empty() is False:
-                    self.scene_manager.handle_events(event)
+                    self.scene_manager.handle_events(event, self.delta_time)
 
     def update(self):
         if self.scene_manager.is_empty() is False:

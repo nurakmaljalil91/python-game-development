@@ -9,7 +9,7 @@ def main():
     print('Capglass Studio 2019')
 
     # create the game
-    game = Game(TITLE, WIDTH, HEIGHT, False)
+    game = Game(TITLE, WINDOW_WINDTH, WINDOW_HEIGHT, False)
     # init the game
     game.start()
     # game loop

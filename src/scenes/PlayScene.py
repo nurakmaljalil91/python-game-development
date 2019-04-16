@@ -5,13 +5,16 @@
 from src.Settings import *
 from src.scenes.Scene import Scene
 from src.gameobjects.Player import *
+from src.gameobjects.Enemy import Enemy
 import pygame
+
+
 # import sys
 # sys.path.append('home/akmal/Documents/python-game-development/src')
-import sys
-from os import path
+# import sys
+# from os import path
 
-sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
+# sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 
 
 class PlayScene(Scene):
@@ -22,17 +25,23 @@ class PlayScene(Scene):
         # here is where the maps and object is spawn
         # create player
         self.player = Player(0, 0, TILESIZE, TILESIZE)
+        self.enemy = Enemy(320, 320, TILESIZE, TILESIZE)
 
-    def handle_events(self, event):
-        self.player.handle_events(event)
+    def handle_events(self, event, delta_time):
+        self.player.handle_events(event, delta_time)
+        self.enemy.handle_events(event, delta_time)
 
     def update(self, delta_time):
-        pass
+        self.player.update(delta_time)
+        self.enemy.update(delta_time)
+        self.player.is_collide(self.enemy)
+
 
     def render(self, window):
         window.fill(BLACK)
         self.draw_grid(window)
         self.player.render(window)
+        self.enemy.render(window)
 
     def clear(self):
         pygame.display.flip()
